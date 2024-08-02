@@ -11,10 +11,13 @@ d-i passwd/user-password-again password ${password}
 d-i netcfg/get_hostname string ${hostname}
 d-i netcfg/get_domain string ${domain}
 
-# start ssh on boot and add user to sudoers nopasswd
+# Install OpenSSH server
+d-i pkgsel/include string openssh-server
 d-i preseed/late_command string \
-  in-target update-rc.d ssh enable ; \
-  echo "%${username} ALL=(ALL:ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/${username} && chmod 0440 /target/etc/sudoers.d/${username}
+    in-target update-rc.d ssh enable ; \
+    echo "%${username} ALL=(ALL:ALL) NOPASSWD:ALL" > /
+    target/etc/sudoers.d/${username} && chmod 0440 /
+    target/etc/sudoers.d/${username}
 
 # Region Information
 d-i time/zone string US/Eastern

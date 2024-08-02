@@ -1,3 +1,24 @@
+"""MacOS Set Up"""
+
+# set up folder organization in ~ directory
+mkdir 'folder name'
+cd 'folder name'
+
+# switch terminal from zsh to bash 
+bash
+
+# initial setup 
+brew tap hashicorp/tap
+brew install hashicorp/tap/packer
+brew upgrade hashicorp/tap/packer
+brew install pipx
+pipx ensurepath
+pipx install --include-deps ansible
+
+git clone https://github.com/cisagov/mesa-packer.git
+
+cd mesa-packer
+
 ```bash
 /bin/bash
 # set up necessary environment variables
@@ -9,6 +30,9 @@ set -o history
 # Build the template
 packer init src/base.pkr.hcl
 packer build src/base.pkr.hcl
+
+#Network Connection
+    #If prompted to allow network connection - Allow
 
 # Add the tools
 packer init src/install-tools.pkr.hcl
